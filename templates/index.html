@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Diamond Price Search</h1>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="weight">Enter Diamond Weight (Carat) (Range 0.2-5.01):</label>
+                <input type="number" step="0.01" class="form-control" id="weight" name="weight" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        {% if results is not none %}
+            <h2 class="mt-5">Results:</h2>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Carat</th>
+                        <th>Cut</th>
+                        <th>Color</th>
+                        <th>Clarity</th>
+                        <th>Depth</th>
+                        <th>Table</th>
+                        <th>Price</th>
+                        <th>X (mm)</th>
+                        <th>Y (mm)</th>
+                        <th>Z (mm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in results.iterrows() %}
+                    <tr>
+                        <td>{{ row['carat'] }}</td>
+                        <td>{{ row['cut'] }}</td>
+                        <td>{{ row['color'] }}</td>
+                        <td>{{ row['clarity'] }}</td>
+                        <td>{{ row['depth'] }}</td>
+                        <td>{{ row['table'] }}</td>
+                        <td>{{ row['price'] }}</td>
+                        <td>{{ row['x'] }}</td>
+                        <td>{{ row['y'] }}</td>
+                        <td>{{ row['z'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</body>
+</html>
